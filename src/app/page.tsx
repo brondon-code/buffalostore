@@ -1,26 +1,24 @@
 import Image from "next/image";
+import { AppCard } from "@/components/app-card";
 import { BrandMark } from "@/components/logo";
 import {
   AndroidIcon,
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  BluetoothIcon,
   CheckCircleIcon,
-  ChevronDownIcon,
   ClockIcon,
   CloseIcon,
   DownloadIcon,
-  FeatherIcon,
   PhoneIcon,
   ShieldCheckIcon,
 } from "@/components/icons";
-import { CopyPageLink, QrDownload } from "@/components/qr-download";
+import { CopyPageLink, QrCode } from "@/components/qr-download";
 import { MobileDownloadBar } from "@/components/mobile-download-bar";
 import {
+  apps,
   getSiteUrl,
   navigation,
-  printerTest as app,
   store,
 } from "@/lib/apps";
 
@@ -28,27 +26,36 @@ const siteUrl = getSiteUrl();
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: app.name,
-  operatingSystem: `Android ${app.minAndroid}+`,
-  applicationCategory: "UtilitiesApplication",
-  softwareVersion: app.version,
-  fileSize: `${app.sizeBytes} bytes`,
-  datePublished: app.releaseDateISO,
-  downloadUrl: `${siteUrl}${app.filePath}`,
-  installUrl: `${siteUrl}/#installation`,
-  description: app.description,
-  image: `${siteUrl}${app.icon}`,
-  inLanguage: "fr-FR",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "EUR",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: store.name,
-  },
+  "@type": "ItemList",
+  name: "Applications Android Buffalo Store",
+  itemListElement: apps.map((app, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "SoftwareApplication",
+      name: app.name,
+      operatingSystem: `Android ${app.minAndroid}+`,
+      applicationCategory:
+        app.slug === "alot" ? "BusinessApplication" : "UtilitiesApplication",
+      softwareVersion: app.version,
+      fileSize: `${app.sizeBytes} bytes`,
+      datePublished: app.releaseDateISO,
+      downloadUrl: `${siteUrl}${app.filePath}`,
+      installUrl: `${siteUrl}/#apps`,
+      description: app.description,
+      image: `${siteUrl}${app.icon}`,
+      inLanguage: "fr-FR",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "EUR",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: store.name,
+      },
+    },
+  })),
 };
 
 export default function HomePage() {
@@ -86,10 +93,9 @@ export default function HomePage() {
             </span>
             <a
               className="button button-primary button-small nav-download"
-              href={app.filePath}
-              download={app.fileName}
+              href="#apps"
             >
-              Obtenir l&apos;APK
+              Explorer les apps
               <ArrowDown width={15} height={15} />
             </a>
           </div>
@@ -101,27 +107,32 @@ export default function HomePage() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">
-                <span className="eyebrow-badge">Nouveau</span>
+                <span className="eyebrow-badge">{apps.length} applications</span>
                 <span className="eyebrow-divider" aria-hidden="true" />
-                Application Android
+                Android APK
               </p>
 
               <h1>
-                Printer Test<span className="title-dot">.</span>
+                Des applis.
+                <br />
+                Zéro détour<span className="title-dot">.</span>
               </h1>
 
-              <p className="hero-tagline">{app.tagline}</p>
+              <p className="hero-tagline">
+                Deux outils Android, prêts à installer.
+              </p>
 
-              <p className="hero-description">{app.description}</p>
+              <p className="hero-description">
+                Printer Test pour vos imprimantes Bluetooth. ALOT pour la
+                loterie et les services. Des APK directs, sans place de marché.
+              </p>
 
               <div className="hero-actions">
                 <a
                   className="button button-primary button-large"
-                  href={app.filePath}
-                  download={app.fileName}
+                  href="#apps"
                 >
-                  <AndroidIcon width={18} height={18} />
-                  Télécharger l&apos;APK
+                  Voir les applications
                   <ArrowDown width={17} height={17} />
                 </a>
                 <a
@@ -136,91 +147,87 @@ export default function HomePage() {
               <ul className="hero-facts" aria-label="Informations rapides">
                 <li>
                   <CheckCircleIcon width={15} height={15} />
-                  Android {app.minAndroid}+
+                  {apps.length} applications
                 </li>
                 <li>
                   <CheckCircleIcon width={15} height={15} />
-                  {app.size}
+                  Android 4.4+
                 </li>
                 <li>
                   <CheckCircleIcon width={15} height={15} />
-                  Version {app.version}
+                  APK direct
                 </li>
               </ul>
             </div>
 
-            <aside className="product-card" aria-label="Fiche de l'application">
+            <aside
+              className="product-card store-panel"
+              aria-label="Catalogue Buffalo Store"
+            >
               <div className="product-topline">
-                <span>Application / {app.category}</span>
+                <span>Buffalo Store / Catalogue</span>
                 <span className="availability">
                   <span className="status-dot" />
-                  Disponible
+                  {apps.length} disponibles
                 </span>
               </div>
 
               <div className="product-body">
-                <div className="app-heading">
-                  <div className="app-icon-wrap">
-                    <Image
-                      src={app.icon}
-                      alt="Icône de l'application Printer Test"
-                      width={64}
-                      height={64}
-                      className="app-icon"
-                      priority
-                    />
-                  </div>
-                  <div className="app-heading-copy">
-                    <span className="app-publisher">{app.developer}</span>
-                    <h2>{app.name}</h2>
-                    <p>
-                      {app.category} · Android
-                    </p>
-                  </div>
+                <div className="store-panel-heading">
+                  <span className="app-publisher">Le catalogue</span>
+                  <h2>Choisissez votre app.</h2>
+                  <p>Deux applis Android. Téléchargement direct.</p>
                 </div>
 
-                <p className="product-copy">
-                  Testez une imprimante Bluetooth, vérifiez la connexion et
-                  passez à la suite.
-                </p>
+                <ul className="store-list">
+                  {apps.map((app) => (
+                    <li key={app.slug}>
+                      <a className="store-item" href={`#${app.slug}`}>
+                        <span className="store-item-icon">
+                          <Image
+                            src={app.icon}
+                            alt=""
+                            width={44}
+                            height={44}
+                          />
+                        </span>
+                        <span className="store-item-copy">
+                          <span className="store-item-name">
+                            {app.name}
+                            {app.badge && (
+                              <span className="store-item-badge">
+                                {app.badge}
+                              </span>
+                            )}
+                          </span>
+                          <span>
+                            {app.category} · {app.size} · Android{" "}
+                            {app.minAndroid}+
+                          </span>
+                        </span>
+                        <span className="store-item-action">
+                          <ArrowRight width={16} height={16} />
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
 
-                <dl className="product-meta">
-                  <div>
-                    <dt>Version</dt>
-                    <dd>{app.version}</dd>
-                  </div>
-                  <div>
-                    <dt>Fichier</dt>
-                    <dd>APK</dd>
-                  </div>
-                  <div>
-                    <dt>Taille</dt>
-                    <dd>{app.size}</dd>
-                  </div>
-                </dl>
-
-                <a
-                  className="button button-primary button-block"
-                  href={app.filePath}
-                  download={app.fileName}
-                >
-                  <DownloadIcon width={18} height={18} />
-                  Télécharger l&apos;APK
-                  <span className="button-size">{app.size}</span>
-                </a>
-
-                <div className="qr-row">
-                  <QrDownload filePath={app.filePath} />
+                <div className="qr-row store-qr-row">
+                  <QrCode
+                    path="/"
+                    label="QR code pour ouvrir Buffalo Store"
+                  />
                   <div className="qr-copy">
-                    <strong>Scannez pour installer.</strong>
-                    <p>Ouvrez l&apos;appareil photo d&apos;un téléphone Android.</p>
+                    <strong>Ouvrez le store sur mobile.</strong>
+                    <p>Scannez le code avec l&apos;appareil photo.</p>
                     <CopyPageLink />
                   </div>
                 </div>
 
                 <p className="product-note">
                   <ShieldCheckIcon width={15} height={15} />
-                  APK distribué directement par {store.name}.
+                  APK directs, hébergés par {store.name}.
                 </p>
               </div>
             </aside>
@@ -228,99 +235,54 @@ export default function HomePage() {
 
           <div className="container hero-strip">
             <div>
+              <span>Applications</span>
+              <strong>{apps.length}</strong>
+            </div>
+            <div>
               <span>Plateforme</span>
               <strong>Android</strong>
             </div>
             <div>
               <span>Compatibilité</span>
-              <strong>{app.minAndroid}+</strong>
+              <strong>4.4+</strong>
             </div>
             <div>
-              <span>Fichier</span>
-              <strong>{app.size}</strong>
-            </div>
-            <div>
-              <span>Version</span>
-              <strong>{app.version}</strong>
+              <span>Distribution</span>
+              <strong>APK direct</strong>
             </div>
           </div>
         </section>
 
-        <section className="section features" id="application">
+        <section className="section apps-section" id="apps">
           <div className="container">
             <div className="section-intro">
-              <span className="kicker">01 — L&apos;application</span>
+              <span className="kicker">01 — Catalogue</span>
               <div className="section-intro-grid">
                 <h2>
-                  Droit au but.
+                  Deux applis.
                   <br />
-                  Comme votre imprimante.
+                  Un même standard.
                 </h2>
                 <p>
-                  Printer Test reste volontairement simple : une app Android
-                  légère, pensée pour tester une imprimante Bluetooth sans
-                  détour ni compte à créer.
+                  Des outils Android sélectionnés pour être utiles, légers et
+                  faciles à installer. Chaque fiche donne la version, la
+                  compatibilité et l&apos;empreinte du fichier.
                 </p>
               </div>
             </div>
 
-            <div className="feature-grid">
-              <article className="feature-card feature-wide">
-                <div className="feature-copy">
-                  <div className="feature-icon">
-                    <BluetoothIcon width={20} height={20} />
-                  </div>
-                  <h3>Le Bluetooth, sans détour.</h3>
-                  <p>
-                    Lancez l&apos;application, autorisez le Bluetooth et testez
-                    votre imprimante. C&apos;est tout ce qu&apos;il faut.
-                  </p>
-                </div>
+            <div className="app-grid">
+              {apps.map((app) => (
+                <AppCard key={app.slug} app={app} />
+              ))}
+            </div>
 
-                <div className="signal-visual" aria-hidden="true">
-                  <span className="signal-ring signal-ring-1" />
-                  <span className="signal-ring signal-ring-2" />
-                  <span className="signal-ring signal-ring-3" />
-                  <span className="signal-core">
-                    <BluetoothIcon width={23} height={23} />
-                  </span>
-                  <span className="signal-dot signal-dot-a" />
-                  <span className="signal-dot signal-dot-b" />
-                  <span className="signal-dot signal-dot-c" />
-                </div>
-              </article>
-
-              <article className="feature-card feature-stat">
-                <div className="feature-icon">
-                  <FeatherIcon width={20} height={20} />
-                </div>
-                <div className="big-stat">
-                  3,8<span>Mo</span>
-                </div>
-                <p>Un APK léger, qui laisse de la place à vos fichiers.</p>
-              </article>
-
-              <article className="feature-card">
-                <div className="feature-icon">
-                  <AndroidIcon width={20} height={20} />
-                </div>
-                <h3>Android {app.minAndroid}+</h3>
-                <p>
-                  Compatible avec les téléphones et tablettes Android équipés
-                  Bluetooth.
-                </p>
-              </article>
-
-              <article className="feature-card">
-                <div className="feature-icon">
-                  <DownloadIcon width={20} height={20} />
-                </div>
-                <h3>Direct, vraiment.</h3>
-                <p>
-                  Le fichier est servi par {store.name}. Pas de redirection, pas
-                  de place de marché.
-                </p>
-              </article>
+            <div className="catalog-footnote">
+              <span>
+                <span className="status-dot" />
+                Catalogue mis à jour le 14 novembre 2026.
+              </span>
+              <span>Android uniquement · Téléchargement direct</span>
             </div>
           </div>
         </section>
@@ -335,16 +297,16 @@ export default function HomePage() {
                 Une minute.
               </h2>
               <p>
-                Le téléchargement est direct. Android vous demandera peut-être
-                d&apos;autoriser votre navigateur à installer des applications.
+                Choisissez votre application, téléchargez l&apos;APK et
+                laissez Android vous guider. Aucun compte Buffalo Store n&apos;est
+                nécessaire.
               </p>
               <a
                 className="button button-inverted button-large"
-                href={app.filePath}
-                download={app.fileName}
+                href="#apps"
               >
-                <DownloadIcon width={18} height={18} />
-                Télécharger · {app.size}
+                Choisir une application
+                <ArrowUpRight width={17} height={17} />
               </a>
             </div>
 
@@ -352,31 +314,31 @@ export default function HomePage() {
               <li>
                 <span className="step-number">01</span>
                 <div>
-                  <h3>Téléchargez l&apos;APK.</h3>
+                  <h3>Choisissez votre application.</h3>
                   <p>
-                    Le fichier de {app.size} se télécharge depuis cette page.
-                    Gardez-le dans vos téléchargements.
+                    Printer Test pour le Bluetooth, ALOT pour la loterie et les
+                    services. Vérifiez la compatibilité Android dans chaque
+                    fiche.
                   </p>
                 </div>
               </li>
               <li>
                 <span className="step-number">02</span>
                 <div>
-                  <h3>Autorisez votre navigateur.</h3>
+                  <h3>Téléchargez l&apos;APK.</h3>
                   <p>
-                    Si Android bloque l&apos;installation, autorisez votre
-                    navigateur à installer des applications inconnues, puis
-                    relancez le fichier.
+                    Le fichier se télécharge directement depuis cette page.
+                    Gardez-le dans vos téléchargements.
                   </p>
                 </div>
               </li>
               <li>
                 <span className="step-number">03</span>
                 <div>
-                  <h3>Installez et ouvrez.</h3>
+                  <h3>Autorisez et installez.</h3>
                   <p>
-                    Confirmez l&apos;installation, ouvrez Printer Test, puis
-                    autorisez l&apos;accès au Bluetooth.
+                    Si Android bloque l&apos;installation, autorisez votre
+                    navigateur à installer des applications, puis confirmez.
                   </p>
                 </div>
               </li>
@@ -398,11 +360,14 @@ export default function HomePage() {
             <div className="details-intro">
               <span className="kicker">03 — Détails</span>
               <h2>
-                Les faits,
+                Android,
                 <br />
-                sans fioritures.
+                point final.
               </h2>
-              <p>Tout ce qu&apos;il faut savoir avant d&apos;installer.</p>
+              <p>
+                Les deux applications sont distribuées en APK. Pas de compte
+                Buffalo Store, pas de redirection.
+              </p>
 
               <div className="compatibility">
                 <div className="compat-item">
@@ -411,7 +376,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <strong>Android</strong>
-                    <span>{app.minAndroid} et plus récent</span>
+                    <span>4.4 et plus récent selon l&apos;app</span>
                   </div>
                   <span className="compat-status compat-yes">
                     <CheckCircleIcon width={19} height={19} />
@@ -432,62 +397,62 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="details-panel">
-              <dl className="spec-list">
-                <div>
-                  <dt>Application</dt>
-                  <dd>{app.name}</dd>
+            <div className="details-panel catalog-panel">
+              <div className="catalog-table">
+                <div className="catalog-table-head">
+                  <span>Application</span>
+                  <span>Version</span>
+                  <span>Android</span>
+                  <span>Taille</span>
+                  <span aria-hidden="true" />
                 </div>
-                <div>
-                  <dt>Version</dt>
-                  <dd>{app.version}</dd>
-                </div>
-                <div>
-                  <dt>Fichier</dt>
-                  <dd>
-                    {app.fileName}
+
+                {apps.map((app) => (
+                  <div className="catalog-table-row" key={app.slug}>
+                    <div className="catalog-app-cell">
+                      <Image
+                        src={app.icon}
+                        alt=""
+                        width={28}
+                        height={28}
+                        className="catalog-icon"
+                      />
+                      <strong>{app.name}</strong>
+                    </div>
+                    <span>{app.version}</span>
+                    <span>{app.minAndroid}+</span>
                     <span>{app.size}</span>
-                  </dd>
-                </div>
-                <div>
-                  <dt>Publié le</dt>
-                  <dd>{app.releaseDate}</dd>
-                </div>
-                <div>
-                  <dt>Android minimum</dt>
-                  <dd>
-                    Android {app.minAndroid} <span>API {app.minSdk}</span>
-                  </dd>
-                </div>
-                <div>
-                  <dt>Version cible</dt>
-                  <dd>
-                    Android {app.targetAndroid} <span>API {app.targetSdk}</span>
-                  </dd>
-                </div>
-              </dl>
+                    <a
+                      href={app.filePath}
+                      download={app.fileName}
+                      aria-label={`Télécharger ${app.name}`}
+                      className="catalog-download"
+                    >
+                      <DownloadIcon width={16} height={16} />
+                    </a>
+                  </div>
+                ))}
+              </div>
 
-              <details className="hash-details">
-                <summary>
-                  Empreinte SHA-256
-                  <ChevronDownIcon width={16} height={16} />
-                </summary>
-                <p>Pour vérifier l&apos;intégrité du fichier téléchargé.</p>
-                <code>{app.sha256}</code>
-              </details>
+              <div className="security-note">
+                <ShieldCheckIcon width={20} height={20} />
+                <div>
+                  <strong>Intégrité vérifiable.</strong>
+                  <p>
+                    Chaque fiche contient l&apos;empreinte SHA-256 du fichier.
+                    Comparez-la après téléchargement si vous le souhaitez.
+                  </p>
+                </div>
+              </div>
 
-              <div className="details-download">
+              <div className="catalog-footer">
                 <span>
-                  <ClockIcon width={16} height={16} />
-                  Dernière version disponible
+                  <ClockIcon width={15} height={15} />
+                  Dernière mise à jour : 14 novembre 2026
                 </span>
-                <a
-                  className="button button-secondary button-small"
-                  href={app.filePath}
-                  download={app.fileName}
-                >
-                  Télécharger
-                  <ArrowDown width={15} height={15} />
+                <a className="text-link" href="#faq">
+                  Questions fréquentes
+                  <ArrowUpRight width={14} height={14} />
                 </a>
               </div>
             </div>
@@ -503,12 +468,8 @@ export default function HomePage() {
                 Les réponses aux questions qu&apos;on nous pose avant une
                 installation Android.
               </p>
-              <a
-                className="text-link"
-                href={app.filePath}
-                download={app.fileName}
-              >
-                Télécharger l&apos;APK
+              <a className="text-link" href="#apps">
+                Voir les applications
                 <ArrowUpRight width={15} height={15} />
               </a>
             </div>
@@ -516,31 +477,31 @@ export default function HomePage() {
             <div className="faq-list">
               <details>
                 <summary>
-                  Comment installer l&apos;application sur Android ?
+                  Comment installer une application sur Android ?
                   <span className="faq-plus" aria-hidden="true" />
                 </summary>
                 <div className="faq-answer">
                   <p>
-                    Téléchargez l&apos;APK, puis ouvrez-le depuis la
-                    notification ou l&apos;application Fichiers de votre
-                    téléphone. Si Android le demande, autorisez votre navigateur
-                    à installer des applications, puis confirmez
-                    l&apos;installation.
+                    Téléchargez l&apos;APK depuis la fiche de l&apos;application,
+                    puis ouvrez-le depuis la notification ou l&apos;application
+                    Fichiers de votre téléphone. Si Android le demande,
+                    autorisez votre navigateur à installer des applications,
+                    puis confirmez l&apos;installation.
                   </p>
                 </div>
               </details>
 
               <details>
                 <summary>
-                  L&apos;application fonctionne-t-elle sur iPhone ?
+                  Les applications fonctionnent-elles sur iPhone ?
                   <span className="faq-plus" aria-hidden="true" />
                 </summary>
                 <div className="faq-answer">
                   <p>
-                    Non. Cette version est un APK Android : elle ne peut pas être
-                    installée sur iOS. Une version iPhone nécessiterait une
-                    signature Apple et une distribution via l&apos;App Store ou
-                    TestFlight.
+                    Non. Les deux applications sont des APK Android et ne
+                    peuvent pas être installées sur iOS. Une version iPhone
+                    nécessiterait une signature Apple et une distribution via
+                    l&apos;App Store ou TestFlight.
                   </p>
                 </div>
               </details>
@@ -552,7 +513,7 @@ export default function HomePage() {
                 </summary>
                 <div className="faq-answer">
                   <p>
-                    Parce que l&apos;application est distribuée hors du Play
+                    Parce que les applications sont distribuées hors du Play
                     Store. Android peut signaler une source inconnue et Play
                     Protect peut demander une confirmation. Ne poursuivez que si
                     vous avez téléchargé le fichier depuis cette page et que
@@ -568,17 +529,33 @@ export default function HomePage() {
                 </summary>
                 <div className="faq-answer">
                   <p>
-                    Tout téléphone ou tablette sous Android {app.minAndroid} ou
-                    plus récent, équipé Bluetooth. Votre imprimante doit
-                    également prendre en charge la connexion Bluetooth avec
-                    l&apos;appareil.
+                    Printer Test nécessite Android 5.1 ou plus récent. ALOT
+                    nécessite Android 4.4 ou plus récent. Un appareil équipé du
+                    Bluetooth est nécessaire pour Printer Test ; ALOT peut
+                    demander l&apos;appareil photo, la localisation ou le
+                    stockage selon les services utilisés.
                   </p>
                 </div>
               </details>
 
               <details>
                 <summary>
-                  Comment mettre à jour ou désinstaller l&apos;app ?
+                  ALOT est-elle accessible à tous ?
+                  <span className="faq-plus" aria-hidden="true" />
+                </summary>
+                <div className="faq-answer">
+                  <p>
+                    ALOT est une application professionnelle destinée aux agents
+                    et opérateurs de loterie. L&apos;accès aux services peut
+                    dépendre de votre opérateur. Buffalo Store ne gère ni les
+                    comptes ni les transactions.
+                  </p>
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  Comment mettre à jour ou désinstaller une application ?
                   <span className="faq-plus" aria-hidden="true" />
                 </summary>
                 <div className="faq-answer">
@@ -614,12 +591,13 @@ export default function HomePage() {
               ))}
             </div>
             <div>
-              <span>Application</span>
-              <a href={app.filePath} download={app.fileName}>
-                Printer Test · APK
-              </a>
+              <span>Applications</span>
+              {apps.map((app) => (
+                <a key={app.slug} href={app.filePath} download={app.fileName}>
+                  {app.name} · APK
+                </a>
+              ))}
               <a href="#details">Détails techniques</a>
-              <a href={app.filePath + ".sha256"}>Empreinte SHA-256</a>
             </div>
           </div>
         </div>

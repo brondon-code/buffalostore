@@ -4,12 +4,14 @@ import { QRCodeSVG } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 import { CheckIcon, LinkIcon } from "@/components/icons";
 
-export function QrDownload({
-  filePath,
+export function QrCode({
+  path = "/",
   size = 96,
+  label = "QR code Buffalo Store",
 }: {
-  filePath: string;
+  path?: string;
   size?: number;
+  label?: string;
 }) {
   const [url, setUrl] = useState<string | null>(null);
 
@@ -17,11 +19,11 @@ export function QrDownload({
     const base =
       process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
       window.location.origin;
-    setUrl(`${base}${filePath}`);
-  }, [filePath]);
+    setUrl(`${base}${path}`);
+  }, [path]);
 
   return (
-    <div className="qr-code" aria-label="QR code de téléchargement de l'APK">
+    <div className="qr-code" aria-label={label}>
       {url ? (
         <QRCodeSVG
           value={url}

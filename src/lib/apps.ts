@@ -1,18 +1,45 @@
 export const store = {
   name: "Buffalo Store",
-  tagline: "Des outils Android simples, bien faits.",
+  tagline: "Des applications Android simples, bien faites.",
   description:
-    "Buffalo Store distribue des applications Android légères, utiles et sans détour.",
+    "Buffalo Store distribue des applications Android légères, utiles et faciles à installer.",
 } as const;
 
-export const printerTest = {
+export type StoreApp = {
+  slug: string;
+  name: string;
+  category: string;
+  badge?: string;
+  tagline: string;
+  description: string;
+  version: string;
+  releaseDate: string;
+  releaseDateISO: string;
+  size: string;
+  sizeBytes: number;
+  fileName: string;
+  filePath: string;
+  sha256: string;
+  icon: string;
+  minAndroid: string;
+  minSdk: number;
+  targetAndroid: string;
+  targetSdk: number;
+  packageName: string;
+  developer: string;
+  permissions: string[];
+  note?: string;
+  accent: string;
+};
+
+export const printerTest: StoreApp = {
+  slug: "printer-test",
   name: "Printer Test",
   category: "Utilitaires",
   tagline: "Vos imprimantes Bluetooth. Testées sans détour.",
   description:
     "Un utilitaire Android léger pour tester vos imprimantes Bluetooth et vérifier votre connexion en quelques secondes.",
   version: "1.0.10",
-  versionName: "1.0",
   releaseDate: "13 novembre 2026",
   releaseDateISO: "2026-11-13",
   size: "3,8 Mo",
@@ -28,11 +55,50 @@ export const printerTest = {
   targetSdk: 34,
   packageName: "win.betbooster.print.test",
   developer: "Buffalo Store",
-  requirements: ["Android 5.1+", "Bluetooth", "3,8 Mo d'espace libre"],
-} as const;
+  permissions: ["Bluetooth", "Appareils à proximité", "Internet"],
+  accent: "#0d8bf2",
+};
+
+export const alot: StoreApp = {
+  slug: "alot",
+  name: "ALOT",
+  category: "Loterie & services",
+  badge: "Nouveau",
+  tagline: "Votre point de vente, dans la poche.",
+  description:
+    "Une application Android pensée pour les agents et opérateurs de loterie : ventes, transactions et suivi des opérations, au même endroit.",
+  version: "1.55",
+  releaseDate: "14 novembre 2026",
+  releaseDateISO: "2026-11-14",
+  size: "8,7 Mo",
+  sizeBytes: 9_147_797,
+  fileName: "alot-v1.55.apk",
+  filePath: "/downloads/alot-v1.55.apk",
+  sha256:
+    "919ecc2bcb05aae936a20c64bb33b3f4470ac1d5751c35ea0a840d9687786699",
+  icon: "/alot-icon.png",
+  minAndroid: "4.4",
+  minSdk: 19,
+  targetAndroid: "13",
+  targetSdk: 33,
+  packageName: "com.egame.mlottery",
+  developer: "Buffalo Store",
+  permissions: [
+    "Appareil photo",
+    "Localisation",
+    "Stockage",
+    "Téléphone",
+    "Wi-Fi",
+    "Internet",
+  ],
+  note: "Application professionnelle. L'accès aux services dépend de votre opérateur.",
+  accent: "#7a2e91",
+};
+
+export const apps: StoreApp[] = [printerTest, alot];
 
 export const navigation = [
-  { label: "L'application", href: "#application" },
+  { label: "Applications", href: "#apps" },
   { label: "Installation", href: "#installation" },
   { label: "Détails", href: "#details" },
   { label: "FAQ", href: "#faq" },

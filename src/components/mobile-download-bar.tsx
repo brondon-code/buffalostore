@@ -1,31 +1,24 @@
-import Image from "next/image";
-import { printerTest } from "@/lib/apps";
+import { BuffaloMark } from "@/components/logo";
+import { apps } from "@/lib/apps";
 import { ArrowDown } from "@/components/icons";
 
 export function MobileDownloadBar() {
   return (
     <div className="mobile-download-bar">
       <div className="mobile-app">
-        <Image
-          src={printerTest.icon}
-          alt=""
-          width={32}
-          height={32}
-          className="mobile-app-icon"
-        />
+        <BuffaloMark size={30} />
         <div className="mobile-app-copy">
-          <strong>{printerTest.name}</strong>
+          <strong>Buffalo Store</strong>
           <span>
-            APK · {printerTest.size} · Android {printerTest.minAndroid}+
+            {apps.length} applications · APK direct
           </span>
         </div>
       </div>
       <a
         className="button button-primary button-small"
-        href={printerTest.filePath}
-        download={printerTest.fileName}
+        href="#apps"
       >
-        Télécharger
+        Voir les apps
         <ArrowDown width={15} height={15} />
       </a>
     </div>

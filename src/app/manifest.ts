@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Buffalo Store",
     short_name: "Buffalo",
     description:
-      "Des outils Android simples, bien faits. Téléchargez Printer Test en APK.",
+      "Des applications Android simples, bien faites. Téléchargez Printer Test et ALOT en APK.",
     start_url: "/",
     display: "minimal-ui",
     background_color: "#ffffff",
