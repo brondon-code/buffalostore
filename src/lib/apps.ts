@@ -95,7 +95,43 @@ export const alot: StoreApp = {
   accent: "#7a2e91",
 };
 
-export const apps: StoreApp[] = [printerTest, alot];
+export const alotTest: StoreApp = {
+  slug: "alot-test",
+  name: "ALOT Test",
+  category: "Loterie & services",
+  badge: "Test",
+  tagline: "La build de test d'ALOT, pour valider chaque écran.",
+  description:
+    "Version de test d'ALOT destinée aux agents et opérateurs : les mêmes services de loterie, dans une build de validation à installer à côté de l'application finale.",
+  version: "1.55 test",
+  releaseDate: "19 novembre 2026",
+  releaseDateISO: "2026-11-19",
+  size: "12,6 Mo",
+  sizeBytes: 13_217_128,
+  fileName: "alot-test-v1.55.apk",
+  filePath: "/downloads/alot-test-v1.55.apk",
+  sha256:
+    "b2be95ba6f854bcb79404cfb7e90df939b88d45b37e46eddad468eb888132385",
+  icon: "/alot-test-icon.png",
+  minAndroid: "4.4",
+  minSdk: 19,
+  targetAndroid: "13",
+  targetSdk: 33,
+  packageName: "com.egame.mlottery",
+  developer: "Buffalo Store",
+  permissions: [
+    "Appareil photo",
+    "Localisation",
+    "Stockage",
+    "Téléphone",
+    "Wi-Fi",
+    "Internet",
+  ],
+  note: "Build de test (debug) signée pour évaluation. Même identifiant que ALOT : l'installer remplace la version ALOT déjà installée.",
+  accent: "#a855f7",
+};
+
+export const apps: StoreApp[] = [printerTest, alot, alotTest];
 
 export const navigation = [
   { label: "Applications", href: "#apps" },
