@@ -119,13 +119,14 @@ export default function HomePage() {
               </h1>
 
               <p className="hero-tagline">
-                Trois outils Android, prêts à installer.
+                Quatre outils Android, prêts à installer.
               </p>
 
               <p className="hero-description">
                 Printer Test pour vos imprimantes Bluetooth. ALOT pour la
-                loterie et les services, et sa build de test ALOT Test. Des APK
-                directs, sans place de marché.
+                loterie et les services, avec ALOT Test et ALOT Model V2 pour
+                valider les builds de test. Des APK directs, sans place de
+                marché.
               </p>
 
               <div className="hero-actions">
@@ -177,7 +178,7 @@ export default function HomePage() {
                 <div className="store-panel-heading">
                   <span className="app-publisher">Le catalogue</span>
                   <h2>Choisissez votre app.</h2>
-                  <p>Trois applis Android. Téléchargement direct.</p>
+                  <p>Quatre applis Android. Téléchargement direct.</p>
                 </div>
 
                 <ul className="store-list">
@@ -260,7 +261,7 @@ export default function HomePage() {
               <span className="kicker">01 — Catalogue</span>
               <div className="section-intro-grid">
                 <h2>
-                  Trois applis.
+                  Quatre applis.
                   <br />
                   Un même standard.
                 </h2>
@@ -281,7 +282,7 @@ export default function HomePage() {
             <div className="catalog-footnote">
               <span>
                 <span className="status-dot" />
-                Catalogue mis à jour le 19 novembre 2026.
+                Catalogue mis à jour le 20 novembre 2026.
               </span>
               <span>Android uniquement · Téléchargement direct</span>
             </div>
@@ -318,8 +319,9 @@ export default function HomePage() {
                   <h3>Choisissez votre application.</h3>
                   <p>
                     Printer Test pour le Bluetooth, ALOT pour la loterie et les
-                    services, ALOT Test pour valider la build de test. Vérifiez
-                    la compatibilité Android dans chaque fiche.
+                    services, ALOT Test et ALOT Model V2 pour valider les builds
+                    de test. Vérifiez la compatibilité Android dans chaque
+                    fiche.
                   </p>
                 </div>
               </li>
@@ -366,7 +368,7 @@ export default function HomePage() {
                 point final.
               </h2>
               <p>
-                Les trois applications sont distribuées en APK. Pas de compte
+                Les quatre applications sont distribuées en APK. Pas de compte
                 Buffalo Store, pas de redirection.
               </p>
 
@@ -449,7 +451,7 @@ export default function HomePage() {
               <div className="catalog-footer">
                 <span>
                   <ClockIcon width={15} height={15} />
-                  Dernière mise à jour : 19 novembre 2026
+                  Dernière mise à jour : 20 novembre 2026
                 </span>
                 <a className="text-link" href="#faq">
                   Questions fréquentes
@@ -499,7 +501,7 @@ export default function HomePage() {
                 </summary>
                 <div className="faq-answer">
                   <p>
-                    Non. Les trois applications sont des APK Android et ne
+                    Non. Les quatre applications sont des APK Android et ne
                     peuvent pas être installées sur iOS. Une version iPhone
                     nécessiterait une signature Apple et une distribution via
                     l&apos;App Store ou TestFlight.
@@ -530,10 +532,10 @@ export default function HomePage() {
                 </summary>
                 <div className="faq-answer">
                   <p>
-                    Printer Test nécessite Android 5.1 ou plus récent. ALOT et
-                    ALOT Test nécessitent Android 4.4 ou plus récent. Un
-                    appareil équipé du Bluetooth est nécessaire pour Printer
-                    Test ; ALOT peut demander l&apos;appareil photo, la
+                    Printer Test nécessite Android 5.1 ou plus récent. ALOT,
+                    ALOT Test et ALOT Model V2 nécessitent Android 4.4 ou plus
+                    récent. Un appareil équipé du Bluetooth est nécessaire pour
+                    Printer Test ; ALOT peut demander l&apos;appareil photo, la
                     localisation ou le stockage selon les services utilisés.
                   </p>
                 </div>
