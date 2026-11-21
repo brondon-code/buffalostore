@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s · Buffalo Store",
   },
   description:
-    "Téléchargez Printer Test, ALOT, ALOT Test et ALOT Model V2 en APK. Des applications Android directes, sans place de marché, avec compatibilité et empreintes vérifiables.",
+    "Téléchargez Printer Test et ALOT en APK. Des applications Android directes, sans place de marché, avec compatibilité et empreintes vérifiables.",
   applicationName: store.name,
   authors: [{ name: store.name }],
   creator: store.name,
@@ -23,8 +23,6 @@ export const metadata: Metadata = {
     "Buffalo Store",
     "Printer Test",
     "ALOT",
-    "ALOT Test",
-    "ALOT Model V2",
     "APK Android",
     "télécharger APK",
     "imprimante Bluetooth",
@@ -39,23 +37,23 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "/",
     siteName: store.name,
-    title: "Buffalo Store — Quatre applications Android",
+    title: "Buffalo Store — Deux applications Android",
     description:
-      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, avec ses builds de test ALOT Test et ALOT Model V2. Téléchargement direct en APK.",
+      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, dans sa build dédiée au modèle V3. Téléchargement direct en APK.",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Buffalo Store — Printer Test, ALOT, ALOT Test et ALOT Model V2 pour Android",
+        alt: "Buffalo Store — Printer Test et ALOT pour Android",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Buffalo Store — Quatre applications Android",
+    title: "Buffalo Store — Deux applications Android",
     description:
-      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, avec ses builds de test ALOT Test et ALOT Model V2. Téléchargement direct en APK.",
+      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, dans sa build dédiée au modèle V3. Téléchargement direct en APK.",
     images: ["/og.png"],
   },
   icons: {
