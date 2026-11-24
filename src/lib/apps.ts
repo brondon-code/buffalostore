@@ -95,7 +95,43 @@ export const alot: StoreApp = {
   accent: "#7a2e91",
 };
 
-export const apps: StoreApp[] = [printerTest, alot];
+export const alotModelV4: StoreApp = {
+  slug: "alot-model-v4",
+  name: "ALOT Model V4",
+  category: "Loterie & services",
+  badge: "Test",
+  tagline: "La build ALOT dédiée au modèle V4.",
+  description:
+    "Build de test (debug) d'ALOT préparée pour la validation sur le modèle V4 : les services de loterie et les opérations des agents, dans une version dédiée aux tests.",
+  version: "1.55 model v4",
+  releaseDate: "25 novembre 2026",
+  releaseDateISO: "2026-11-25",
+  size: "12,6 Mo",
+  sizeBytes: 13_223_603,
+  fileName: "alot-model-v4-v1.55.apk",
+  filePath: "/downloads/alot-model-v4-v1.55.apk",
+  sha256:
+    "a2f6b51c138619d4a8f23682818f2a16892bbcd281f963497c5d7c16c6b4d053",
+  icon: "/alot-icon.png",
+  minAndroid: "4.4",
+  minSdk: 19,
+  targetAndroid: "13",
+  targetSdk: 33,
+  packageName: "com.egame.mlottery",
+  developer: "Buffalo Store",
+  permissions: [
+    "Appareil photo",
+    "Localisation",
+    "Stockage",
+    "Téléphone",
+    "Wi-Fi",
+    "Internet",
+  ],
+  note: "Build de test (debug) dédiée au modèle V4. Même identifiant que ALOT : l'installer remplace la version ALOT déjà installée.",
+  accent: "#0f766e",
+};
+
+export const apps: StoreApp[] = [printerTest, alot, alotModelV4];
 
 export const navigation = [
   { label: "Applications", href: "#apps" },

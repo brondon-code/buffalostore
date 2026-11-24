@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s · Buffalo Store",
   },
   description:
-    "Téléchargez Printer Test et ALOT en APK. Des applications Android directes, sans place de marché, avec compatibilité et empreintes vérifiables.",
+    "Téléchargez Printer Test, ALOT et ALOT Model V4 en APK. Des applications Android directes, sans place de marché, avec compatibilité et empreintes vérifiables.",
   applicationName: store.name,
   authors: [{ name: store.name }],
   creator: store.name,
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "Buffalo Store",
     "Printer Test",
     "ALOT",
+    "ALOT Model V4",
     "APK Android",
     "télécharger APK",
     "imprimante Bluetooth",
@@ -37,23 +38,23 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "/",
     siteName: store.name,
-    title: "Buffalo Store — Deux applications Android",
+    title: "Buffalo Store — Trois applications Android",
     description:
-      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, dans sa build dédiée au modèle V3. Téléchargement direct en APK.",
+      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, avec sa build dédiée au modèle V3 et ALOT Model V4. Téléchargement direct en APK.",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Buffalo Store — Printer Test et ALOT pour Android",
+        alt: "Buffalo Store — Printer Test, ALOT et ALOT Model V4 pour Android",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Buffalo Store — Deux applications Android",
+    title: "Buffalo Store — Trois applications Android",
     description:
-      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, dans sa build dédiée au modèle V3. Téléchargement direct en APK.",
+      "Printer Test pour vos imprimantes Bluetooth. ALOT pour la loterie et les services, avec sa build dédiée au modèle V3 et ALOT Model V4. Téléchargement direct en APK.",
     images: ["/og.png"],
   },
   icons: {
